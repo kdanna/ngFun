@@ -1,0 +1,62 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+	<script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-css-only/css/bootstrap.css">
+
+
+</head>
+<body ng-app="ngFun">
+
+
+{{'hola!'.toUpperCase()}}
+<br>
+{{['s','w','e','e','t','n','e','s','s'].join('')}}
+<div ng-controller="PokemonController">
+	
+    <input placeholder="enter your name" ng-model="trainer.name"/>
+    <h1>Trainer: {{trainer.name}}</h1>
+
+     <ul>
+    	<li ng-repeat="poke in pokemon" ng-if="poke.type != 'Fairy'">{{poke.name}}</li>
+	</ul>
+
+	<button ng-click="lives = lives + 1" ng-init="lives=0">Add Lives</button>
+	lives: {{pokemon[0].name + " now has " + lives + " lives!"}} 
+
+	<table class="table table-striped">
+		<thead>
+	      <tr>
+	        <th>Ndex</th>
+	        <th>Name</th>
+	        <th>Type</th>
+	        <th>Nemesis</th>
+	      </tr>
+	    </thead>
+   		<tbody>
+	      <tr ng-repeat="poke in pokemon">
+	        <td>{{poke.Ndex}}</td>
+	        <td>{{poke.name}}</td>
+	        <td>{{poke.type}}</td>
+	        <td>{{poke.name | reverse}}</td>
+	      </tr>
+		</tbody>
+	</table>
+
+	<table ng-table="vm.tableParams" class="table" show-filter="true">
+	    <tr ng-repeat="user in $data">
+	        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+	            {{user.name}}</td>
+	        <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+	            {{user.age}}</td>
+	    </tr>
+	</table>
+
+</div>
+
+</body>
+</html>
